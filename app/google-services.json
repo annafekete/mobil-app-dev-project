@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "317886910495",
+    "project_id": "tensiotrack",
+    "storage_bucket": "tensiotrack.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:317886910495:android:19cacf61bbee745007052a",
+        "android_client_info": {
+          "package_name": "com.example.tensiotrack"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuUI0_ZMHeZp0kO58xtPWjRNGOiQsJleg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
