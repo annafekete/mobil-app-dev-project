@@ -215,12 +215,12 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/signinButton"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/white"
-                app:cornerRadius="30dp"
-                app:backgroundTint="#9E2A2B"
+                android:layout_height="37dp"
+                android:onClick="register"
                 android:text="@string/signin"
-                android:onClick="register" />
+                android:textColor="@android:color/white"
+                app:backgroundTint="#9E2A2B"
+                app:cornerRadius="30dp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/cancelButton"

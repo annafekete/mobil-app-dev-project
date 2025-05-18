@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NewActivity"
+    android:background="#FBFBFA">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="32dp">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Új értékek megadása"
+            android:textColor="#9E2A2B"
+            android:textSize="24sp"
+            android:textAlignment="center"
+            android:maxWidth="600dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@id/title"
+            android:layout_marginTop="8dp"
+            android:layout_marginHorizontal="30dp"
+            android:background="#9E2A2B" />
+
+        <!-- Dátum & Idő -->
+        <TextView
+            android:id="@+id/labelDateTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dátum és Idő"
+            android:textSize="18dp"
+            android:layout_below="@id/title"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="30dp" />
+
+        <LinearLayout
+            android:id="@+id/dateTimeInputs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/labelDateTime"
+            android:layout_marginHorizontal="30dp"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            >
+
+            <EditText
+                android:id="@+id/inputDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/rounded_edittext"
+                android:hint="2025.05.15"
+                android:inputType="date"
+                android:padding="10dp"
+                android:focusable="false"
+                />
+            <EditText
+                android:id="@+id/inputNow"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/rounded_edittext"
+                android:hint="15:05"
+                android:inputType="time"
+                android:padding="10dp"
+                android:focusable="false"
+                />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/labelBP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vérnyomás és pulzus"
+            android:textSize="18dp"
+            android:layout_below="@id/dateTimeInputs"
+            android:layout_marginTop="22dp"
+            android:layout_marginStart="30dp" />
+
+        <!-- SYS -->
+        <EditText
+            android:id="@+id/inputSys"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/labelBP"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="30dp"
+            android:background="@drawable/rounded_edittext"
+            android:hint="Szisztolés vérnyomás (SYS)"
+            android:inputType="number"
+            android:maxWidth="600dp"
+            android:padding="10dp" />
+
+        <!-- DIA -->
+        <EditText
+            android:id="@+id/inputDia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/inputSys"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="30dp"
+            android:background="@drawable/rounded_edittext"
+            android:hint="Disztolés vérnyomás (DIA)"
+            android:inputType="number"
+            android:maxWidth="600dp"
+            android:padding="10dp" />
+
+        <!-- PULSE -->
+        <EditText
+            android:id="@+id/inputPulse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/inputDia"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="30dp"
+            android:background="@drawable/rounded_edittext"
+            android:hint="Pulzus (BPM)"
+            android:inputType="number"
+            android:maxWidth="600dp"
+            android:padding="10dp" />
+
+        <!-- Megjegyzés -->
+        <TextView
+            android:id="@+id/labelComment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Megjegyzés"
+            android:textSize="18dp"
+            android:layout_below="@id/inputPulse"
+            android:layout_marginTop="22dp"
+            android:layout_marginStart="30dp" />
+
+        <EditText
+            android:id="@+id/inputNote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/labelComment"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="30dp"
+            android:background="@drawable/rounded_edittext"
+            android:hint="pl. fejfájás, kávé után ..."
+            android:inputType="text"
+            android:maxWidth="600dp"
+            android:padding="10dp" />
+
+        <!-- Címkék -->
+        <TextView
+            android:id="@+id/labelTags"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Megjegyzés"
+            android:textSize="18dp"
+            android:layout_below="@id/inputNote"
+            android:layout_marginTop="22dp"
+            android:layout_marginStart="30dp" />
+
+        <Spinner
+            android:id="@+id/spinnerTags"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/labelTags"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_edittext"
+            android:spinnerMode="dropdown"
+            android:padding="10dp"
+            android:maxWidth="600dp" />
+
+        <!-- Gombok -->
+        <LinearLayout
+            android:id="@+id/buttonGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/spinnerTags"
+            android:layout_marginTop="40dp"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonSave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mentés"
+                android:textColor="@android:color/white"
+                app:cornerRadius="30dp"
+                app:backgroundTint="#9E2A2B" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mégse"
+                android:layout_marginStart="40dp"
+                android:textColor="#9E2A2B"
+                app:strokeColor="#9E2A2B"
+                app:strokeWidth="2dp"
+                app:cornerRadius="30dp"
+                app:backgroundTint="@android:color/white" />
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>

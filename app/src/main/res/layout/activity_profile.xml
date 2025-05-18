@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#FBFBFA"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ProfileActivity">
+
+    <RelativeLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="40dp">
+
+        <!-- Cím -->
+        <TextView
+            android:id="@+id/textviewProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Profil adatok"
+            android:textColor="#9E2A2B"
+            android:textSize="24sp"
+            android:textAlignment="center"
+            android:maxWidth="600dp"
+            android:layout_marginTop="50dp"
+            android:layout_centerHorizontal="true" />
+
+        <!-- Vonal -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@id/textviewProfile"
+            android:layout_marginTop="8dp"
+            android:layout_marginHorizontal="30dp"
+            android:background="#9E2A2B" />
+
+        <!-- Adatok -->
+        <EditText
+            android:id="@+id/editName"
+            android:layout_below="@id/textviewProfile"
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Név"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginHorizontal="30dp"
+            android:padding="10dp"
+            android:maxWidth="600dp" />
+
+        <EditText
+            android:id="@+id/editEmail"
+            android:layout_below="@id/editName"
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="E-mail (nem módosítható)"
+            android:enabled="false"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginHorizontal="30dp"
+            android:padding="10dp"
+            android:maxWidth="600dp" />
+
+        <EditText
+            android:id="@+id/editBirthDate"
+            android:layout_below="@id/editEmail"
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Születési dátum (YYYY.MM.DD)"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginHorizontal="30dp"
+            android:padding="10dp"
+            android:inputType="date"
+            android:maxWidth="600dp" />
+
+        <EditText
+            android:id="@+id/editWeight"
+            android:layout_below="@id/editBirthDate"
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Testsúly (kg)"
+            android:inputType="number"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginHorizontal="30dp"
+            android:padding="10dp"
+            android:maxWidth="600dp" />
+
+        <EditText
+            android:id="@+id/editHeight"
+            android:layout_below="@id/editWeight"
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Magasság (cm)"
+            android:inputType="number"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginHorizontal="30dp"
+            android:padding="10dp"
+            android:maxWidth="600dp" />
+
+        <!-- Mentés gomb -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonUpdateProfile"
+            android:layout_below="@id/editHeight"
+            android:layout_marginTop="32dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Profil mentése"
+            app:cornerRadius="30dp"
+            android:backgroundTint="#9E2A2B"
+            android:textColor="@android:color/white"
+            android:layout_centerHorizontal="true" />
+
+        <!-- Mérések listája -->
+        <TextView
+            android:id="@+id/textMeasurementsTitle"
+            android:layout_below="@id/buttonUpdateProfile"
+            android:layout_marginTop="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mért értékek"
+            android:textColor="#9E2A2B"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:maxWidth="600dp"
+            android:layout_centerHorizontal="true" />
+
+        <LinearLayout
+            android:id="@+id/measurementList"
+            android:layout_below="@id/textMeasurementsTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="16dp" />
+
+        <Button
+            android:id="@+id/buttonBackHome"
+            android:layout_below="@id/measurementList"
+            android:layout_marginTop="32dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vissza a főoldalra"
+            app:cornerRadius="30dp"
+            android:backgroundTint="#9E2A2B"
+            android:textColor="@android:color/white"
+            android:layout_centerHorizontal="true"
+            />
+
+    </RelativeLayout>
+</ScrollView>

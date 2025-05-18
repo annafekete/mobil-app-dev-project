@@ -25,8 +25,15 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import android.util.Patterns; // Helyesen legyen importálva
+
 
 import java.sql.Array;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SignInActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private static final String LOG_TAG = SignInActivity.class.getName();
@@ -116,7 +123,17 @@ public class SignInActivity extends AppCompatActivity implements AdapterView.OnI
         String password2 = password2ET.getText().toString();
 
         if (!password1.equals(password2)) {
-            Log.e(LOG_TAG, "A jelszavak nem egyeznek!");
+            Toast.makeText(SignInActivity.this, "A jelszavak nem egyeznek!", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if (password1.length() < 6) {
+            Toast.makeText(SignInActivity.this, "A jelszónak legalább 6 karakter hosszúnak kell lennie!", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            Toast.makeText(SignInActivity.this, "Kérlek adj meg egy érvényes e-mail címet!", Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -129,6 +146,22 @@ public class SignInActivity extends AppCompatActivity implements AdapterView.OnI
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     Log.d(LOG_TAG, "Felhasználó létrehozása sikeres!");
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    if (user != null) {
+                        //Firestore mentés
+                        FirebaseFirestore db = FirebaseFirestore.getInstance();
+                        Map<String, Object> userData = new HashMap<>();
+                        userData.put("name", name);
+                        userData.put("email", email);
+                        userData.put("birthdate", dateofbirth);
+                        userData.put("gender", genderType);
+                        userData.put("weight", Integer.parseInt(weight));
+                        userData.put("height", Integer.parseInt(height));
+                        db.collection("users").document(user.getUid())
+                                .set(userData)
+                                .addOnSuccessListener(aVoid -> Log.d(LOG_TAG, "Felhasználói adatok mentve Firestore-ba"))
+                                .addOnFailureListener(e -> Log.w(LOG_TAG, "Hiba a Firestore mentéskor", e));
+                    }
                     startTrack();
                 } else {
                     Log.d(LOG_TAG, "Felhasználó létrehozása sikertelen!");
@@ -143,7 +176,7 @@ public class SignInActivity extends AppCompatActivity implements AdapterView.OnI
     }
 
     private void startTrack(/* registered data */) {
-        Intent intent = new Intent(this, HomeActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         // intent.putExtra("SECRET_KEY", SECRET_KEY );
         startActivity(intent);
     }

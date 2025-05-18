@@ -8,121 +8,90 @@
     android:background="#FBFBFA"
     tools:context=".HomeActivity">
 
-    <!-- Nagy kártya felül -->
+    <!-- Felső kártya -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardMain"
         android:layout_width="0dp"
-        android:layout_height="140dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginHorizontal="24dp"
-        app:cardCornerRadius="20dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/card_margin"
+        android:layout_marginHorizontal="@dimen/card_margin"
+        app:cardCornerRadius="@dimen/card_radius"
         app:cardElevation="4dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintDimensionRatio="4:1">
 
         <TextView
             android:id="@+id/textLatestEntry"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Utolsó érték: ..."
-            android:padding="16dp"
-            android:textSize="18sp"
+            android:padding="@dimen/padding_default"
+            android:textSize="@dimen/text_large"
             android:textColor="#000000" />
     </com.google.android.material.card.MaterialCardView>
 
     <!-- Két kisebb kártya -->
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/chartCards"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginHorizontal="24dp"
-        android:orientation="horizontal"
-        android:gravity="center"
+        android:layout_marginTop="@dimen/padding_default"
+        android:layout_marginHorizontal="@dimen/card_margin"
         app:layout_constraintTop_toBottomOf="@id/cardMain"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- SYS kártya -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardSys"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginEnd="8dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="2dp">
+            android:layout_height="0dp"
+            app:cardCornerRadius="@dimen/card_radius"
+            app:cardElevation="2dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/cardDia"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="2:1"
+            android:layout_marginEnd="@dimen/padding_default"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="8dp">
-
-                <com.github.mikephil.charting.charts.LineChart
-                    android:id="@+id/chartSys"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- DIA kártya -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardDia"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginStart="8dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="2dp">
+            android:layout_height="0dp"
+            app:cardCornerRadius="@dimen/card_radius"
+            app:cardElevation="2dp"
+            app:layout_constraintStart_toEndOf="@id/cardSys"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="2:1"
+            android:layout_marginStart="@dimen/padding_default"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="8dp">
-
-                <com.github.mikephil.charting.charts.LineChart
-                    android:id="@+id/chartDia"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-    </LinearLayout>
-
-    <!-- Tip kártya -->
+    <!-- Tippek -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardTip"
         android:layout_width="0dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginHorizontal="24dp"
-        app:cardCornerRadius="20dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/padding_default"
+        android:layout_marginHorizontal="@dimen/card_margin"
+        app:cardCornerRadius="@dimen/card_radius"
         app:cardElevation="2dp"
         app:layout_constraintTop_toBottomOf="@id/chartCards"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintDimensionRatio="4:1" />
 
-        <TextView
-            android:id="@+id/tipCombined"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Tipp szöveg itt jelenik meg..."
-            android:textSize="14sp"
-            android:textColor="#9E2A2B"
-            android:gravity="center"
-            android:padding="16dp"/>
-    </com.google.android.material.card.MaterialCardView>
-
-    <!-- Átlag statisztika -->
+    <!-- Statisztika -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardStat"
         android:layout_width="0dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginHorizontal="24dp"
-        app:cardCornerRadius="20dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_default"
+        android:layout_marginHorizontal="@dimen/card_margin"
+        app:cardCornerRadius="@dimen/card_radius"
         app:cardElevation="2dp"
         app:layout_constraintTop_toBottomOf="@id/cardTip"
         app:layout_constraintStart_toStartOf="parent"
@@ -130,10 +99,10 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:padding="16dp">
+            android:padding="@dimen/padding_default">
 
             <TextView
                 android:id="@+id/textAverage"
@@ -141,7 +110,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Átlag: SYS: --, DIA: --, PUL: --"
-                android:textSize="16sp"
+                android:textSize="@dimen/text_normal"
                 android:textColor="#000000" />
 
             <Button
@@ -154,12 +123,11 @@
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- Navigációs sáv -->
+    <!-- Navigáció -->
     <RelativeLayout
         android:id="@+id/bottomNavBar"
         android:layout_width="match_parent"
         android:layout_height="72dp"
-        android:layout_marginBottom="0dp"
         android:background="#EEEEEE"
         app:layout_constraintBottom_toBottomOf="parent">
 
@@ -184,17 +152,18 @@
             android:contentDescription="Profil" />
     </RelativeLayout>
 
-    <!-- Középső + gomb -->
+    <!-- + gomb -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/buttonAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_add"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="@dimen/padding_default"
         app:backgroundTint="#9E2A2B"
         app:tint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:contentDescription="Új érték hozzáadása" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ReminderActivity"
+    android:background="#FBFBFA">
+
+    <LinearLayout
+        android:id="@+id/reminderSettings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <Switch
+            android:id="@+id/switchEnableReminder"
+            android:textSize="20dp"
+            android:textColor="#9E2A2B"
+            android:layout_marginTop="16dp"
+            android:text="Emlékeztető bekapcsolása"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_height="2dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="32dp"
+            android:background="#9E2A2B" />
+
+        <TextView
+            android:text="Válaszd ki a napokat:"
+            android:textSize="18sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:columnCount="4">
+            <CheckBox android:id="@+id/checkMonday" android:text="Hétfő" />
+            <CheckBox android:id="@+id/checkTuesday" android:text="Kedd" />
+            <CheckBox android:id="@+id/checkWednesday" android:text="Szerda" />
+            <CheckBox android:id="@+id/checkThursday" android:text="Csütörtök" />
+            <CheckBox android:id="@+id/checkFriday" android:text="Péntek" />
+            <CheckBox android:id="@+id/checkSaturday" android:text="Szombat" />
+            <CheckBox android:id="@+id/checkSunday" android:text="Vasárnap" />
+        </GridLayout>
+
+        <TextView
+            android:text="Időpont(ok):"
+            android:textSize="18sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+        <LinearLayout
+            android:id="@+id/timeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+        <Button
+            android:id="@+id/buttonAddTime"
+            android:text="Új időpont hozzáadása"
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#9E2A2B"
+            app:strokeColor="#9E2A2B"
+            app:strokeWidth="2dp"
+            app:backgroundTint="@android:color/white"
+            app:cornerRadius="30dp"/>
+
+        <Button
+            android:id="@+id/buttonSaveReminder"
+            android:text="Emlékeztető mentése"
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            app:backgroundTint="#9E2A2B"
+            app:cornerRadius="30dp"/>
+
+        <Button
+            android:id="@+id/buttonBackHome"
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#9E2A2B"
+            app:strokeColor="#9E2A2B"
+            app:strokeWidth="2dp"
+            app:backgroundTint="@android:color/white"
+            app:cornerRadius="30dp"
+            android:text="Vissza a főoldalra"
+            />
+    </LinearLayout>
+
+</ScrollView>

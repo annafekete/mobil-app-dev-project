@@ -17,7 +17,6 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInApi;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
@@ -26,8 +25,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.GoogleAuthCredential;
 import com.google.firebase.auth.GoogleAuthProvider;
+
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.os.Build;
 
 public class MainActivity extends AppCompatActivity {
     private static final String LOG_TAG = MainActivity.class.getName();
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+        createNotificationChannel();
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -102,25 +105,30 @@ public class MainActivity extends AppCompatActivity {
     public void login(View view) {
         String name = userEmailET.getText().toString();
         String password = userPasswordET.getText().toString();
-        //Log.i(LOG_TAG, "Bejelentkezett: " + name + ", jelszó: " + password);
 
-        mAuth.signInWithEmailAndPassword(name, password).addOnCompleteListener(this, new com.google.android.gms.tasks.OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task != null) {
-                    Log.d(LOG_TAG, "Felhasználó belépése sikeres!");
-                    startTrack();
-                } else {
-                    Log.d(LOG_TAG, "Felhasználó belépése sikertelen!");
-                    Toast.makeText(MainActivity.this, "Bejelentkezési hiba: " + task.getException().getMessage() , Toast.LENGTH_LONG).show();
-                }
+        if (name.isEmpty() || password.isEmpty()) {
+            Toast.makeText(this, "Kérlek töltsd ki az e-mail címet és jelszót!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        mAuth.signInWithEmailAndPassword(name, password).addOnCompleteListener(this, task -> {
+            if (task.isSuccessful()) {
+                Log.d(LOG_TAG, "Felhasználó belépése sikeres!");
+                startTrack();
+            } else {
+                Log.d(LOG_TAG, "Felhasználó belépése sikertelen!");
+                Toast.makeText(MainActivity.this,
+                        "Bejelentkezési hiba: " + task.getException().getMessage(),
+                        Toast.LENGTH_LONG).show();
             }
         });
     }
 
+
     private void startTrack() {
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
+        finish();
     }
 
     public void loginWithGoogle(View view) {
@@ -149,6 +157,21 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            String channelId = "reminder_channel";
+            CharSequence name = "TensioTrack Emlékeztetők";
+            String description = "Vérnyomás mérési emlékeztetők";
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+
+            NotificationChannel channel = new NotificationChannel(channelId, name, importance);
+            channel.setDescription(description);
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -167,6 +190,7 @@ public class MainActivity extends AppCompatActivity {
         Log.i(LOG_TAG, "onDestroy");
     }
 
+    //Lifecycle hook 2
     @Override
     protected void onPause() {
         super.onPause();
